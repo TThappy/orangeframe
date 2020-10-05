@@ -1,0 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.flex {
+    display: flex;
+}
+
+.flex-c {
+    display: flex;
+    flex-direction: column;
+}
+
+.j-sb {
+    justify-content: space-between;
+}
+
+.j-sa {
+    justify-content: space-around;
+}
+
+.ja-c {
+    justify-content: center;
+    align-items: center;
+}
