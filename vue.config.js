@@ -14,7 +14,8 @@ module.exports = {
         resolve: {
             alias: {
                 //配置路径别名
-                '~a': resolve('src/assets'),
+                '~as': resolve('src/assets'),
+                '~a': resolve('src/api'),
                 '~v': resolve('src/views'),
                 '~c': resolve('src/components'),
                 '~p': resolve('src/plugin'),

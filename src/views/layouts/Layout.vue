@@ -81,7 +81,9 @@ export default {
     };
   },
   created() {
-    this.openKeys = [this.$route.meta.module]
+    if (this.$route.meta.module){
+      this.openKeys = [this.$route.meta.module]
+    }
     this.selectedKeys = [this.$route.path]
   },
   methods: {

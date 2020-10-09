@@ -23,6 +23,7 @@
 
 <script>
 
+import { login } from "@/api/user";
 
 export default {
   name: "Login",
@@ -37,15 +38,18 @@ export default {
     }
   },
   methods: {
-    login() {
+    async login() {
       this.loginLoading = !this.loginLoading
-      if (this.param.username == "wyl" && this.param.password == "123") {
+      this.param.password = this.$encrypt(this.param.password)
+      let res = await login(this.param)
+      if (res.success) {
         this.$ms("登录成功", () => {
-          this.$router.push("/")
+          this.$router.push('/')
         })
       } else {
-        this.$me("用户名或密码错误")
+        this.$mw(res.msg)
       }
+
       this.loginLoading = !this.loginLoading
     }
   }

@@ -28,4 +28,21 @@
 .a-c {
     align-items: center;
 }
+#loadingbar {
+    background: linear-gradient(to right,rgb(13,90,141),rgb(181,218,235),rgb(86,140,223));
+    height: 3px;
+    position: absolute;
+    top:0;
+    z-index: 99999;
+    width: 0;
+    animation: grow 1s infinite forwards;
+}
+@keyframes grow {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
 
+}

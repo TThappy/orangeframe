@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
+import NProgress from 'nprogress'
 Vue.use(Router)
 
 const router = new Router({
@@ -53,7 +53,14 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
+    NProgress.start()
     document.title = 'orangeframe-' + to.meta.title
-    next()
+    setTimeout(()=>{
+        next()
+    },300)
+
+})
+router.afterEach((to, from) => {
+    NProgress.done()
 })
 export default router
