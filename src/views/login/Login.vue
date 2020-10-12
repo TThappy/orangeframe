@@ -24,7 +24,7 @@
 <script>
 
 import { login } from "@/api/user";
-
+import Cookies from 'js-cookie';
 export default {
   name: "Login",
 
@@ -44,6 +44,8 @@ export default {
       let res = await login(this.param)
       if (res.success) {
         this.$ms("登录成功", () => {
+          console.log(res.token)
+          Cookies.set("authToken",res.token)
           this.$router.push('/')
         })
       } else {

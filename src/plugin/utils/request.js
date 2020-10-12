@@ -1,7 +1,7 @@
 import axios from 'axios'
 import NProgress from 'nprogress'
 import Qs from 'qs'
-
+import Cookies from 'js-cookie'
 const instance = axios.create({
     baseURL: 'http://localhost:8090',
     timeout: 3000,
@@ -19,6 +19,9 @@ const instance = axios.create({
 instance.interceptors.request.use(function (config) {
     // 在发送请求之前做些什么
     NProgress.start();
+    if(Cookies.get("authToken")){
+        config.headers.common['authToken'] = Cookies.get("authToken")
+    }
     return config;
 }, function (error) {
     // 对请求错误做些什么
@@ -29,6 +32,10 @@ instance.interceptors.request.use(function (config) {
 instance.interceptors.response.use(function (response) {
     // 对响应数据做点什么
     NProgress.done()
+    if (response.data.msg == "请先登录"){
+        Cookies.remove("authToken")
+        location.href = '/login'
+    }
     return response;
 }, function (error) {
     // 对响应错误做点什么
